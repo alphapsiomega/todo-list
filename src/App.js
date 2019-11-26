@@ -1,24 +1,27 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Login from "./components/account/Login";
+import CreateAccount from "./components/account/CreateAccount";
+import {getToken} from "./config/Token";
+import CheckJwt from "./components/account/CheckJWT";
+import ShowTodos from "./components/todo/ShowTodos";
+import AddTodo from "./components/todo/AddTodo";
+import Logout from "./components/account/Logout";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="account-components">
+        <Login/>
+        <CreateAccount/>
+      </div>
+      <Logout/>
+      <br/>
+      <CheckJwt/>
+      <hr/>
+      <AddTodo/>
+      <ShowTodos/>
     </div>
   );
 }
