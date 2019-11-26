@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {baseUrl} from "../../config/Axios";
-import {setToken} from "../../config/Token";
+import {getToken, setToken} from "../../config/Token";
 
 const accountUrl = `${baseUrl}/account`;
 
@@ -16,10 +16,24 @@ export async function login({name, pass}) {
 }
 
 export async function createAccount({name, pass}) {
-  try{
+  try {
     const res = await axios.post(`${accountUrl}/create`, {name, pass});
     return true;
-  }catch (e) {
+  } catch (e) {
     return false
+  }
+}
+
+export async function getStatus() {
+  try {
+    const res = await axios.get(`${accountUrl}/status`, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`
+      }
+    });
+    return true;
+  } catch (e) {
+
+    return false;
   }
 }

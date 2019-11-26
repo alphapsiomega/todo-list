@@ -6,6 +6,7 @@ function Logout(props) {
     <button className="button is-danger"
             onClick={() => {
               setToken('');
+              window.location.reload();
             }}>Logout</button>
   );
 }
