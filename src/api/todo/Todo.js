@@ -1,25 +1,28 @@
-import axios from 'axios';
-import {baseUrl} from "../../config/Axios";
-import {getToken} from "../../config/Token";
+import {getAxiosInstance} from "../../config/Axios";
 
-const server = axios.create({headers: {Authorization: `Bearer ${getToken()}`}});
+const axios = getAxiosInstance('/user/todo');
 
-const todoUrl = baseUrl + "/user/todo";
 
 export const getTodos = async () => {
   try {
-    let result = await server.get(todoUrl);
+    let result = await axios.get('');
     return result.data.result;
   } catch (e) {
     return [];
   }
 };
 
-export const createTodo = async ({title = '', description = ''} = {}) => {
-  await server.post(todoUrl, {
+export const updateTodos = async (todos) => {
+  return (await axios.post('', {
+    data: todos
+  })).data.result.posted;
+};
+
+export const createTodo = async ({title = '', description = '', date = new Date().getTime()} = {}) => {
+  return (await axios.post('', {
     data: {
-      title, description
+      title, description, date
     },
     type: 'merge'
-  })
+  })).data.result.posted;
 };

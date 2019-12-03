@@ -4,7 +4,7 @@ import {createAccount} from "../../api/account/Account";
 function CreateAccount(props) {
   return (
     <div className="box has-background-white content">
-      <h3>Create Account</h3>
+      <h3 className="has-text-dark">Create Account</h3>
       <form onSubmit={async (e) => {
         e.preventDefault();
         const name = e.target.name.value;

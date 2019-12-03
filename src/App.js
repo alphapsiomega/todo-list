@@ -14,28 +14,29 @@ function App() {
   const [loggedIn, setLoggedIn] = useState('checking');
   useEffect(() => {
     (async () => {
-      console.log("sending");
       let res = await getStatus();
-      setLoggedIn(res ? 'valid' : 'invalid');
+      setLoggedIn(res ? res : 'invalid');
     })();
   }, []);
 
   if (loggedIn === 'checking') return <div className="App">Checking if logged in</div>;
 
   return (
-    <div className="App">
-      {loggedIn === 'invalid' &&
-      <div className="account-components">
-        <Login/>
-        <CreateAccount/>
-      </div>
+    <div className="App content">
+      {loggedIn === 'invalid' ?
+        <div className="account-components">
+          <Login/>
+          <CreateAccount/>
+        </div>
+        :
+        <h3>
+          <span className="is-italic is-size-6">logged in as</span> {loggedIn.user.name}
+        </h3>
       }
-
       <Logout/>
       <br/>
       <CheckJwt/>
       <hr/>
-      <AddTodo/>
       <ShowTodos/>
     </div>
   );

@@ -5,17 +5,17 @@ function CheckJwt(props) {
   const [jwt, setJwt] = useState(getToken);
   return (
     <>
-      <button className="button is-primary is-outlined field"
-              onClick={() => {
-                setJwt(getToken())
-              }}
+      <h2 className="has-text-primary"
       >
-        Check JWT
-      </button>
+        Current JWT
+      </h2>
       <div className="jwt-display">
-        {jwt && jwt.split('.').map((text, index) => {
+        {jwt ? jwt.split('.').map((text, index) => {
           return <div key={index}>{text}</div>
-        })}
+        }) :
+        'No JWT stored'
+        }
+
       </div>
     </>
   );

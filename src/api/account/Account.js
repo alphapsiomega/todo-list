@@ -1,39 +1,32 @@
-import axios from 'axios';
-import {baseUrl} from "../../config/Axios";
 import {getToken, setToken} from "../../config/Token";
+import {getAxiosInstance} from "../../config/Axios";
 
-const accountUrl = `${baseUrl}/account`;
+const axios = getAxiosInstance('/account');
 
 export async function login({name, pass}) {
   try {
-    const res = await axios.post(`${accountUrl}/login`, {name, pass});
+    const res = await axios.post(`/login`, {name, pass});
     const jwt = res.data.jwt;
     setToken(jwt);
     return true;
-  } catch (e) {
+  } catch (error) {
     return false;
   }
 }
 
 export async function createAccount({name, pass}) {
   try {
-    const res = await axios.post(`${accountUrl}/create`, {name, pass});
+    const res = await axios.post(`/create`, {name, pass});
     return true;
-  } catch (e) {
-    return false
+  } catch (error) {
+    return false;
   }
 }
 
 export async function getStatus() {
   try {
-    const res = await axios.get(`${accountUrl}/status`, {
-      headers: {
-        Authorization: `Bearer ${getToken()}`
-      }
-    });
-    return true;
-  } catch (e) {
-
+    return (await axios.get(`/status`)).data;
+  } catch (error) {
     return false;
   }
 }
