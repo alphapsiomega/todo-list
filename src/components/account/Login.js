@@ -5,7 +5,7 @@ function Login() {
   return (
     <div className="box has-background-white content">
       <h3 className="has-text-dark">Login</h3>
-      <form onSubmit={ async event => {
+      <form onSubmit={async event => {
         event.preventDefault();
         const name = event.target.username.value;
         const pass = event.target.password.value;

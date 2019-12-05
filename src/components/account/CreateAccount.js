@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {createAccount} from "../../api/account/Account";
 
-function CreateAccount(props) {
+function CreateAccount() {
   return (
     <div className="box has-background-white content">
       <h3 className="has-text-dark">Create Account</h3>

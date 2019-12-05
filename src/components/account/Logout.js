@@ -1,7 +1,7 @@
 import React from 'react';
 import {setToken} from "../../config/Token";
 
-function Logout(props) {
+function Logout() {
   return (
     <button className="button is-danger"
             onClick={() => {

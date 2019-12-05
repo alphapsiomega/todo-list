@@ -12,6 +12,8 @@ export const getTodos = async () => {
   }
 };
 
+// kind of a hack
+// instead of deleting, update list with what we have locally
 export const updateTodos = async (todos) => {
   return (await axios.post('', {
     data: todos

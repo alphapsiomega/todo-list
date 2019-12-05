@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {getTodos, updateTodos} from "../../api/todo/Todo";
-import {createAccount} from "../../api/account/Account";
 import AddTodo from "./AddTodo";
 import {Transition} from "react-spring/renderprops-universal";
 import {config} from 'react-spring'
+
 function ShowTodos(props) {
   const [todos, setTodos] = useState(null);
 
@@ -19,11 +19,9 @@ function ShowTodos(props) {
   return (
     <>
       <div className="field todo-container ">
-
-
         <Transition
           items={todos} keys={todo => {
-            return todo.date
+          return todo.date
         }}
           from={{transform: 'translate3d(0,-40px,0)'}}
           enter={{transform: 'translate3d(0,0px,0)', opacity: 1}}
@@ -49,24 +47,6 @@ function ShowTodos(props) {
           )
           }
         </Transition>
-
-        {/*{todos.map((todo, index) => {*/}
-        {/*  return <div key={index} className="notification is-white todo-item">*/}
-        {/*    <button className="delete" onClick={async () => {*/}
-        {/*      let [...tmp] = todos;*/}
-        {/*      tmp.splice(index, 1);*/}
-        {/*      setTodos(await updateTodos(tmp));*/}
-        {/*    }}/>*/}
-
-        {/*    <div className="is-size-3">*/}
-        {/*      {todo.title}*/}
-        {/*    </div>*/}
-        {/*    <div>*/}
-        {/*      {todo.description}*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*})}*/}
-
       </div>
       <AddTodo onChange={todos => {
         setTodos(todos);

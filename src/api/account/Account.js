@@ -1,4 +1,4 @@
-import {getToken, setToken} from "../../config/Token";
+import {setToken} from "../../config/Token";
 import {getAxiosInstance} from "../../config/Axios";
 
 const axios = getAxiosInstance('/account');
@@ -16,7 +16,7 @@ export async function login({name, pass}) {
 
 export async function createAccount({name, pass}) {
   try {
-    const res = await axios.post(`/create`, {name, pass});
+    await axios.post(`/create`, {name, pass});
     return true;
   } catch (error) {
     return false;
